@@ -10,9 +10,7 @@ public class Lagrange {
         for (int i = 0; i < x.length; i++) {
             System.out.println("x[" + i + "] = " + x[i] + ", y[" + i + "] = " + y[i]);
         }
-        
-        System.out.println("\nProgrammed by: Ysac Advincula");
-    }
+            }
 
     public static double lagrangeInterpolation(double[] x, double[] y, double point) {
         int n = x.length;

@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 import MathLogic.Divided;
-import MathLogic.ForwardBackward;
-import MathLogic.NFIF;
+import MathLogic.Backward;
+import MathLogic.Forward;
 
 public class Main {
     public static void main(String[] args) {
-        NFIF nfif = new NFIF();
-        ForwardBackward nfbf = new ForwardBackward();
+        Forward Forward = new Forward();
+        Backward Backward = new Backward();
         Divided divided = new Divided();
         Scanner input = new Scanner(System.in);
 
@@ -30,27 +30,27 @@ public class Main {
 
         switch (decision) {
             case (1):
-                nfif.calcForwardDiffTable(y, n);
-                nfif.printForwardDiffTable(x, y, n);
+                Forward.calcForwardDiffTable(y, n);
+                Forward.printForwardDiffTable(x, y, n);
                 sum = y[0][0];
                 u = (value - x[0]) / (x[1] - x[0]);
 
                 for (int i = 1; i < n; i++) {
-                    sum = sum + (nfif.p_cal(u, i) * y[0][i]) /
-                            nfif.factorial(i);
+                    sum = sum + (Forward.p_cal(u, i) * y[0][i]) /
+                            Forward.factorial(i);
                 }
                 sum = Math.round(sum * 10000.0) / 10000.0;
                 System.out.println("\nValue using Newton's Forward Interpolation at x = " + value + " is " + sum);
                 break;
 
             case (2):
-                nfbf.calcBackwardDiffTable(y, n);
-                nfbf.printForwardDiffTable(x, y, n);
+                Backward.calcBackwardDiffTable(y, n);
+                Backward.printForwardDiffTable(x, y, n);
                 sum = y[n - 1][0];
                 u = (value - x[n - 1]) / (x[1] - x[0]);
                 for (int i = 1; i < n; i++) {
-                    sum = sum + (nfbf.p_cal(u, i) * y[n - 1][i]) /
-                            nfbf.factorial(i);
+                    sum = sum + (Backward.p_cal(u, i) * y[n - 1][i]) /
+                            Backward.factorial(i);
                 }
                 sum = Math.round(sum * 10000.0) / 10000.0;
                 System.out.println("\nValue using Newton's Backward Interpolation at x = " + value + " is " + sum);
